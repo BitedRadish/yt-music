@@ -2,17 +2,24 @@ import type { Config } from "tailwindcss";
 
 const config = {
     darkMode: ["class"],
+
+    // tailwind css가 적용될 파일들의 경로
     content: [
         "./pages/**/*.{ts,tsx,js,jsx}",
         "./components/**/*.{ts,tsx,js,jsx}",
         "./app/**/*.{ts,tsx,js,jsx}",
         "./src/**/*.{ts,tsx,js,jsx}",
     ],
+    // 모든 Tailwind CSS 클래스에 접두사를 붙일 때 사용하는 옵션
+    // prefix 예시
     prefix: "",
     theme: {
         container: {
+            // class 명이 container로 들어갈 때 적용
+            // center는 컨테이너가 자동으로 가운데 정렬되도록 사용
             center: true,
             padding: "2rem",
+            // 반응형 사이즈
             screens: {
                 sm: "640px",
                 md: "768px",

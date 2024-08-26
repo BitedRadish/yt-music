@@ -1,4 +1,4 @@
-import { Playlist } from "@/types";
+import { TopSong } from "@/types";
 import React from "react";
 import {
     Carousel,
@@ -8,19 +8,33 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel";
 import PlaylistCard from "./PlaylistCard";
+import { chunkArray } from "@/lib/utils";
+import SongCard from "@/components/SongCard";
 
-interface PlayListCarouselProps {
+interface SongListCarouselProps {
     title: string;
     subTitle?: string;
     Thumbnail?: React.ReactNode;
-    playlistArray?: Playlist[];
+    songListTop10: TopSong[];
 }
-const PlayListCarousel: React.FC<PlayListCarouselProps> = ({
+
+const SongColumn = ({ songList = [] }: { songList: TopSong[] }) => {
+    return (
+        <div className="flex flex-col gap-4">
+            {songList.map((song: TopSong, idx: number) => {
+                return <SongCard key={idx} song={song}></SongCard>;
+            })}
+        </div>
+    );
+};
+const SongListCarousel: React.FC<SongListCarouselProps> = ({
     title,
     subTitle,
     Thumbnail,
-    playlistArray,
-}) => {
+    songListTop10,
+}: SongListCarouselProps) => {
+    const chunkedTop10SongList = chunkArray(songListTop10, 4) as TopSong[][];
+
     return (
         <div className="w-full">
             <Carousel>
@@ -50,14 +64,14 @@ const PlayListCarousel: React.FC<PlayListCarouselProps> = ({
                 </div>
 
                 <CarouselContent className="mt-4">
-                    {playlistArray?.map((playlist: Playlist, index: number) => {
+                    {chunkedTop10SongList?.map((songList, index) => {
                         return (
                             <CarouselItem
                                 key={index}
                                 // 복습 포인트
-                                className="basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5"
+                                className="lg:basis-1/2"
                             >
-                                <PlaylistCard playlist={playlist} />
+                                <SongColumn songList={songList} />
                             </CarouselItem>
                         );
                     })}
@@ -67,4 +81,4 @@ const PlayListCarousel: React.FC<PlayListCarouselProps> = ({
     );
 };
 
-export default PlayListCarousel;
+export default SongListCarousel;
