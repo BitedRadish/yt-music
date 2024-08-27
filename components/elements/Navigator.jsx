@@ -63,8 +63,13 @@ const Navigator = () => {
             </section>
             <section>
                 <ul>
-                    {dummyPlaylistArray.map((playlist) => {
-                        return <PlayListNav playlist={playlist}></PlayListNav>;
+                    {dummyPlaylistArray.map((playlist, idx) => {
+                        return (
+                            <PlayListNav
+                                key={idx}
+                                playlist={playlist}
+                            ></PlayListNav>
+                        );
                     })}
                 </ul>
             </section>
