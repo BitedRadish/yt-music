@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import useUIState from "@/hooks/useUiState.js";
+import useUIState from "@/hooks/useUiState";
 import { homeCategoryList } from "@/lib/dummyData";
 import { cn } from "@/lib/utils";
 
