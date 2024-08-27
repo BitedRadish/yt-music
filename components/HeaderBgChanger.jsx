@@ -1,5 +1,5 @@
 "use client";
-import useUIState from "@/hooks/useUiState";
+import useUIState from "@/hooks/useUIState";
 import React, { useEffect } from "react";
 
 const HeaderBgChanger = ({ imgSrc }) => {

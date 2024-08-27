@@ -7,7 +7,7 @@ import { FaChromecast } from "react-icons/fa";
 import { FiSearch } from "react-icons/fi";
 import Logo from "@/components/elements/Logo";
 import { cn } from "@/lib/utils";
-import useUIState from "@/hooks/useUiState";
+import useUIState from "@/hooks/useUIState";
 
 import {
     Drawer,
