@@ -11,11 +11,16 @@ import {
     FiMoreVertical,
 } from "react-icons/fi";
 import IconButton from "./elements/IconButton";
+import usePlayerState from "@/hooks/usePlayerState";
 
 interface SongCardProps {
     song: TopSong;
 }
 const SongCard: React.FC<SongCardProps> = ({ song }) => {
+    const { addSongList } = usePlayerState();
+    const onClickPlay = () => {
+        addSongList([song]);
+    };
     return (
         <article className="flex gap-4 h-[48px] w-full relative group">
             <div className="w-[48px] h-[48px] relative">
@@ -25,7 +30,10 @@ const SongCard: React.FC<SongCardProps> = ({ song }) => {
                     fill
                     className="object-cover"
                 ></Image>
-                <section className="w-[48px] h-[48px] absolute  items-center justify-center hidden group-hover:flex bg-black cursor-pointer">
+                <section
+                    onClick={onClickPlay}
+                    className="w-[48px] h-[48px] absolute  items-center justify-center hidden group-hover:flex bg-black cursor-pointer"
+                >
                     <FiPlayCircle size={20} />
                 </section>
             </div>

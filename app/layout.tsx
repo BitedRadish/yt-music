@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/providers/theme-provider";
 import Sidebar from "@/components/Sidebar";
 import "./globals.css";
+import PlayerWrapper from "@/components/player/PlayerWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
                     disableTransitionOnChange
                 >
                     <Sidebar>{children}</Sidebar>
+                    <PlayerWrapper></PlayerWrapper>
                 </ThemeProvider>
             </body>
         </html>

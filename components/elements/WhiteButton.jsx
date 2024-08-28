@@ -1,7 +1,13 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 
-const WhiteButton = ({ icon, label, className, ...props }) => {
+const WhiteButton = ({
+    icon = <></>,
+    label,
+    className = "",
+    onClick = () => {},
+    ...props
+}) => {
     return (
         <div
             className={cn(
@@ -9,6 +15,7 @@ const WhiteButton = ({ icon, label, className, ...props }) => {
                 className
             )}
             {...props}
+            onClick={onClick}
         >
             <span> {icon}</span>
             <span>{label}</span>

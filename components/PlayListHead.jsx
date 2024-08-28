@@ -7,10 +7,17 @@ import { getRandomElementFromArray } from "@/lib/utils";
 import Image from "next/image";
 import WhiteButton from "@/components/elements/WhiteButton";
 import DarkButton from "@/components/elements/DarkButton";
+import usePlayerState from "@/hooks/usePlayerState";
 
 const PlayListHead = ({ playlist = {} } = {}) => {
     const { playlistName, owner, songList } = playlist;
     const randomSong = getRandomElementFromArray(songList);
+
+    const { addSongList } = usePlayerState();
+    const onClickPlay = () => {
+        addSongList(songList);
+    };
+
     return (
         <section>
             <div className="flex gap-[50px] ">
@@ -32,6 +39,7 @@ const PlayListHead = ({ playlist = {} } = {}) => {
                             className={"w-[85px]"}
                             icon={<FiPlay></FiPlay>}
                             label={"재생"}
+                            onClick={onClickPlay}
                         ></WhiteButton>
                         <DarkButton
                             className={"w-[135px] text-[14px]"}
@@ -49,6 +57,7 @@ const PlayListHead = ({ playlist = {} } = {}) => {
                     className={"w-[85px]"}
                     icon={<FiPlay></FiPlay>}
                     label={"재생"}
+                    onClick={onClickPlay}
                 ></WhiteButton>
                 <DarkButton
                     className={"w-[135px] text-[14px]"}

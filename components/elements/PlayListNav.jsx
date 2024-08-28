@@ -1,12 +1,16 @@
 "use client";
 
+import usePlayerState from "@/hooks/usePlayerState";
 import React from "react";
 import { IoMdPlayCircle } from "react-icons/io";
 
 const PlayListNav = ({ playlist }) => {
+    const { addSongList } = usePlayerState();
     const { id, owner, playlistName, songList } = playlist;
 
-    const onClickPlay = () => {};
+    const onClickPlay = () => {
+        addSongList(songList);
+    };
     return (
         <li
             className="mx-3 px-4 flex h-[56px] items-center justify-between

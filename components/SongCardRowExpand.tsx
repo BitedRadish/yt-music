@@ -11,19 +11,24 @@ import {
 } from "react-icons/fi";
 import IconButton from "./elements/IconButton";
 import { useRouter } from "next/navigation";
-
+import usePlayerState from "@/hooks/usePlayerState";
 interface SongCardRowExpandProps {
     song: Song;
 }
-const SongCard: React.FC<SongCardRowExpandProps> = ({ song }) => {
+const SongCardRowExpand: React.FC<SongCardRowExpandProps> = ({ song }) => {
+    const { addSongList } = usePlayerState();
+
     const { channel, channelId } = song;
     const { push } = useRouter();
     const onClickChannel = () => {
         push(`/channel/${channelId}`);
     };
+    const onClickPlay = () => {
+        addSongList([song]);
+    };
     return (
         <article className="flex gap-4 h-[48px] w-full relative group">
-            <div className="w-[48px] h-[48px] relative">
+            <div className="w-[48px] h-[48px] relative" onClick={onClickPlay}>
                 <Image
                     src={song.imageSrc}
                     alt="img"
@@ -53,4 +58,4 @@ const SongCard: React.FC<SongCardRowExpandProps> = ({ song }) => {
     );
 };
 
-export default SongCard;
+export default SongCardRowExpand;
